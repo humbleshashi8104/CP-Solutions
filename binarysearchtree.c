@@ -7,7 +7,7 @@ typedef struct{
 }Btnode;
 int COUNT = 10;
 
-struct Btnode* newnode(int n){
+Btnode* newnode(int n){
     Btnode* temp = (Btnode*)malloc(sizeof(Btnode));
     temp->val = n;
     temp->left = temp->right = NULL;
