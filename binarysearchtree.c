@@ -9,7 +9,7 @@ int COUNT = 10;
 
 Btnode* newnode(int n){
     Btnode* temp = (Btnode*)malloc(sizeof(Btnode));
-    temp->val = n;
+    temp->val = n;  
     temp->left = temp->right = NULL;
     return temp;
 }
@@ -113,6 +113,20 @@ void inorder(Btnode* root){
     printf("%d ", root->val);
 }
 
+int lfs(Btnode* root, int n){
+    if(root == NULL){
+        return 0;
+    }
+    Btnode* temp = root->left;
+    if(temp != NULL && temp->val == n){
+        return 1;
+    }
+    temp = root->right;
+    if(temp != NULL && temp->val == n){
+        return 1;
+    }
+    return lfs(root->left, n) || lfs(root->right, n);
+}
 
 //printing is not in syllabus, this prints the binary tree in horizontal fashion
 void print2DUtil(Btnode *root, int space){
@@ -187,6 +201,20 @@ int main(){
         printf("No 15 does not exists\n");
     }
     if(dfs(root, 11)){
+        printf("Yes 11 exists\n");
+    }
+    else{
+        printf("No 11 does not exists\n");
+    }
+    printf("\n -------------------------- \n");
+    printf("level (breath) first search on tree: \n\n");
+    if(lfs(root, 15)){
+        printf("Yes 15 exists\n");
+    }
+    else{
+        printf("No 15 does not exists\n");
+    }
+    if(lfs(root, 11)){
         printf("Yes 11 exists\n");
     }
     else{
